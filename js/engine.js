@@ -11,7 +11,9 @@
 var checkCollisions = function () {
     allEnemies.forEach(function (enemy) {
         if (enemy.y == player.y) {
-            console.log('Bang!');
+            // console.log('Bang!');
+            console.log(`checkCollision() is working, player :${play.x},${play.y}`)
+
         }
     })
 }
