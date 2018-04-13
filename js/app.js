@@ -23,7 +23,6 @@ Enemy.prototype.update = function(dt) {
     if (this.x > width * 4) {
         this.x = 0;
     } 
-    Enemy.prototype.checkCollisions();
 };
 
 // 此为游戏必须的函数，用来在屏幕上画出敌人，
@@ -31,31 +30,15 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//此为玩家与虫子对撞时玩家复位功能,未成功～～
-Enemy.prototype.checkCollisions = function () {
-    // debugger
-    allEnemies.forEach(function () {
-        if (this.y === player.y) {
-            // debugger
-            console.log(`bang!`)
-            // console.log(`checkCollision() is working, player :${player.x},${player.y}`)
-        }
-    })
-}
 
-// Enemy.prototype.checkCollision = function (player) {
-//      if (this.y === player.y) {
-//     console.log(`collision happened!! enemy.x: ${this.x}, player.x: ${player.x}`)
-//     } else {
-//     console.log(`player's safe!! enemy.x: ${this.x}, player.x: ${player.x}`)
-//     }
-// }
+
 // 现在实现你自己的玩家类
 // 这个类需要一个 update() 函数， render() 函数和一个 handleInput()函数
 
 var Player = function (x, y) {
     this.x = x;
     this.y = y;
+    this.hasWin = false; //将玩家是否赢过游戏的属性设初始值
     this.sprite = 'images/char-boy.png'
 }
 
@@ -70,18 +53,34 @@ Player.prototype.update = function () {
     } else if (this.x < width * 0) {
         this.x = width * 0;
     }
+    this.win();
+    this.checkCollisions();
 }
 
+Player.prototype.reset = function () {
+    this.x = width * 3;
+    this.y = height * 4 - delta;
+}
 
-//当玩家到了河就算赢得游戏，屏幕打印‘胜利’，并充值玩家起始位置，未成功～～～
+//当玩家到了河就算赢得游戏，屏幕打印‘胜利’，并充值玩家起始位置.
 Player.prototype.win = function() {
-   if (this.y < 62) {
-       alert("You Win");
-      this.x = width * 3;
-      this.y = height * 4 - delta;
+   if (this.y < 62 && !this.hasWin) {
+       var self = this;
+       setTimeout(() => {
+           alert("You Win");
+           self.reset();
+       }, 10);
    }
 }
-
+//此为玩家与虫子对撞时玩家复位功能
+Player.prototype.checkCollisions = function () {
+    for (var i = 0; i < allEnemies.length; i++) {
+        if (this.x < allEnemies[i].x + 82 && this.x + 82 > allEnemies[i].x && this.y < allEnemies[i].y + 50 && this.y + 50 > allEnemies[i].y) {
+            console.log("bang!");
+            this.reset();
+        }
+    }
+}
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
