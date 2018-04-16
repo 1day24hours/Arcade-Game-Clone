@@ -112,9 +112,9 @@ Player.prototype.handleInput = function(movement){
 // 把所有敌人的对象都放进一个叫 allEnemies 的数组里面
 // 把玩家对象放进一个叫 player 的变量里面
 var allEnemies = [];
-allEnemies.push(new Enemy(0, height - delta, 200));//第一个虫子，在第一行石子路
-allEnemies.push(new Enemy(0, 2 * height - delta, 150));//第二个虫子，在第二行石子路
-allEnemies.push(new Enemy(0 , 3 * height - delta, 250));//第三个虫子，在第三行石子路
+allEnemies.push(new Enemy(0, height - delta, Math.random() * (200-150)+100));//第一个虫子，在第一行石子路
+allEnemies.push(new Enemy(0, 2 * height - delta, Math.random() * (200-100)+150));//第二个虫子，在第二行石子路
+allEnemies.push(new Enemy(0 , 3 * height - delta, Math.random() * (300-200)+180));//第三个虫子，在第三行石子路
 var player = new Player(width * 3, height * 4 - delta);
 
 

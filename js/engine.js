@@ -8,15 +8,14 @@
 
  * 这个引擎使画布的上下文(CTX)对象全局可用，从而使编写app.js更加简单。
  */
-var checkCollisions = function () {
-    allEnemies.forEach(function (enemy) {
-        if (enemy.y == player.y) {
-            // console.log('Bang!');
-            console.log(`checkCollision() is working, player :${play.x},${play.y}`)
-
-        }
-    })
-}
+// var checkCollisions = function () {
+//     allEnemies.forEach(function (enemy) {
+//         if (enemy.y == player.y) {
+//             // console.log('Bang!');
+//             console.log(`checkCollision() is working, player :${play.x},${play.y}`)
+//         }
+//     })
+// }
 
 var Engine = (function(global) {
     /* 实现定义我们会在这个作用于用到的变量
