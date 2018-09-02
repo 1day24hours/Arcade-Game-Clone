@@ -2,6 +2,8 @@
 前端纳米学位街机游戏克隆项目
 ===============================
 
+![ArcadeGameClone](https://github.com/1day24hours/Arcade-Game-Clone/blob/master/gif/Arcade-Game-Clone.gif)
+
       
 ## 介绍 Introduction
 本工具/仓库是前端纳米学位街机游戏克隆项目。旨在学习、体验使用 JavaScript 面向对象的相关知识。
